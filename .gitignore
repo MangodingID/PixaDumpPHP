@@ -1,0 +1,15 @@
+# Code Editor
+.idea
+.vscode
+
+# PROJECT
+/vendor/
+composer.lock
+
+.env
+.env.backup
+.env.testing
+
+# PHPUnit
+.phpunit.cache
+.phpunit.result.cache

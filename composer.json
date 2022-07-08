@@ -1,0 +1,43 @@
+{
+    "name": "mangodingid/pixadump-php",
+    "description": "PixaDump client for PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Supian M",
+            "email": "supianidz@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0|^8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.4",
+        "nesbot/carbon": "^2.59",
+        "ramsey/uuid": "^4.3"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.5",
+        "phpunit/phpunit": "^9.5",
+        "symfony/var-dumper": "^6.0|^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "MangodingID\\PixaDump\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MangodingID\\PixaDump\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
