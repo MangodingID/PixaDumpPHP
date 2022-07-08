@@ -11,9 +11,6 @@ $datas = [
 ];
 
 foreach ($datas as $data) {
-    try {
-        $pixadump->secure()->dump($data);
-    } catch (Throwable $exception) {
-        throw $data;
-    }
+    /** @noinspection PhpUnhandledExceptionInspection */
+    $pixadump->secure()->dump($data);
 }
