@@ -18,11 +18,10 @@ class GuzzleHttpClient extends HttpClient
     /**
      * @param  string $host
      * @param  int    $port
-     * @param  bool   $http
      */
-    public function __construct(string $host, int $port, bool $http = false)
+    public function __construct(string $host, int $port)
     {
-        parent::__construct($host, $port, $http);
+        parent::__construct($host, $port);
 
         $this->client = new Client([
             //

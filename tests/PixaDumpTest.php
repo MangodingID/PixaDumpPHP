@@ -56,31 +56,4 @@ class PixaDumpTest extends TestCase
 
         $this->pixadump->client($client)->dump('foo');
     }
-
-    /**
-     * @return void
-     * @throws Throwable
-     */
-    public function testDontThrowExceptionWhenInSilentMode() : void
-    {
-        $client = $this->createPartialMock(GuzzleHttpClient::class, [
-            'request',
-        ]);
-
-        $client
-            ->expects($this->once())
-            ->method('request')
-            ->with(
-                $this->equalTo('POST'),
-                $this->equalTo('dump'),
-                $this->equalTo(
-                    new PayloadFactory('foo')
-                )
-            )
-            ->willThrowException(new PixaDumpException(
-                'It looks like PixaDump is not opening, to ignore this message, use silent mode.'
-            ));
-
-        $this->pixadump->client($client)->silent()->dump('foo');
-    }
 }

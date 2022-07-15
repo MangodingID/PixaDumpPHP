@@ -4,7 +4,6 @@ namespace MangodingID\PixaDump;
 
 use MangodingID\PixaDump\Client\GuzzleHttpClient;
 use MangodingID\PixaDump\Contracts\HttpClient;
-use Throwable;
 
 class PixaDump
 {
@@ -25,16 +24,6 @@ class PixaDump
     public function __construct(string $host = 'localhost', int $port = 1337)
     {
         $this->client(new GuzzleHttpClient($host, $port));
-    }
-
-    /**
-     * @return $this
-     */
-    public function secure() : PixaDump
-    {
-        $this->client->secure();
-
-        return $this;
     }
 
     /**
@@ -61,18 +50,11 @@ class PixaDump
     /**
      * @param  mixed ...$args
      * @return PixaDump
-     * @throws Throwable
      */
     public function dump(mixed ...$args) : PixaDump
     {
         foreach ($args as $arg) {
-            try {
-                $this->client->request('POST', 'dump', new PayloadFactory($arg));
-            } catch (Throwable $exception) {
-                if (! $this->silent) {
-                    throw $exception;
-                }
-            }
+            $this->client->request('POST', 'dump', new PayloadFactory($arg));
         }
 
         return $this;

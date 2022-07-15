@@ -21,16 +21,6 @@ abstract class HttpClient implements Contract
     }
 
     /**
-     * @return Contract
-     */
-    public function secure() : Contract
-    {
-        $this->secure = true;
-
-        return $this;
-    }
-
-    /**
      * @param  string $host
      * @return $this
      */
@@ -58,11 +48,7 @@ abstract class HttpClient implements Contract
      */
     public function buildURL(string $path) : string
     {
-        if ($this->secure) {
-            return sprintf('https://%s:%d/api/%s', $this->host, $this->port, $path);
-        }
-
-        return sprintf('http://%s:%d/api/%s', $this->host, $this->port, $path);
+        return sprintf('http://%s:%d/%s', $this->host, $this->port, $path);
     }
 
     /**
@@ -71,12 +57,12 @@ abstract class HttpClient implements Contract
      */
     public function getHeaders(array $headers = []) : array
     {
-        if (! isset($headers['X-Request-From'])) {
-            $headers['X-Request-From'] = 'PIXADUMP/PHP';
+        if (isset($headers['X-Request-From'])) {
+            $headers['X-Request-From'] = strtoupper($headers['X-Request-From']);
         }
 
-        if (isset($headers['X-Request-From'])) {
-            $headers['X-Request-From'] = strtoupper($headers['X-Request-From']); // Make sure it's uppercase
+        if (! isset($headers['X-Request-From'])) {
+            $headers['X-Request-From'] = 'PIXADUMP/PHP';
         }
 
         return array_merge($headers, [

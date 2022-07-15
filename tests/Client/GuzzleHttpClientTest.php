@@ -30,17 +30,7 @@ class GuzzleHttpClientTest extends TestCase
      */
     public function testItReturnBaseUriWithHttpScheme() : void
     {
-        $this->assertEquals('http://localhost:1337/api/foo', $this->client->buildURL(
-            'foo'
-        ));
-    }
-
-    /**
-     * @return void
-     */
-    public function testItReturnBaseUriWithHttpsScheme() : void
-    {
-        $this->assertEquals('https://localhost:1337/api/foo', $this->client->secure()->buildURL(
+        $this->assertEquals('http://localhost:1337/foo', $this->client->buildURL(
             'foo'
         ));
     }
@@ -52,7 +42,7 @@ class GuzzleHttpClientTest extends TestCase
     {
         $this->client->setHost('example.com');
 
-        $this->assertEquals('http://example.com:1337/api/foo', $this->client->buildURL(
+        $this->assertEquals('http://example.com:1337/foo', $this->client->buildURL(
             'foo'
         ));
     }
@@ -64,7 +54,7 @@ class GuzzleHttpClientTest extends TestCase
     {
         $this->client->setPort(3000);
 
-        $this->assertEquals('http://localhost:3000/api/foo', $this->client->buildURL(
+        $this->assertEquals('http://localhost:3000/foo', $this->client->buildURL(
             'foo'
         ));
     }

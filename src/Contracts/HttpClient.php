@@ -14,11 +14,6 @@ interface HttpClient
     public function __construct(string $host, int $port);
 
     /**
-     * @return HttpClient
-     */
-    public function secure() : HttpClient;
-
-    /**
      * @param  string $host
      * @return $this
      */
@@ -29,12 +24,6 @@ interface HttpClient
      * @return $this
      */
     public function setPort(int $port) : self;
-
-    /**
-     * @param  string $path
-     * @return string
-     */
-    public function buildURL(string $path) : string;
 
     /**
      * @return array
